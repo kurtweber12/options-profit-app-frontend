@@ -34,7 +34,7 @@ THIS IS ALL THE DATA SENT IN THE POST REQUEST
 
 
 */
-async function httpPostNewContract() {
+async function httpPostNewContract(data) {
 	try {
 		return await fetch(`${API_URL}/add`, {
 			method: "post",

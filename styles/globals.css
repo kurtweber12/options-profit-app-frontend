@@ -39,4 +39,12 @@ body {
 	.table-items {
 		@apply border border-gray-800 p-1;
 	}
+
+	.input-field {
+		@apply flex flex-row justify-between items-center;
+	}
+
+	.input-field-text-boxes {
+		@apply text-black p-2 w-40;
+	}
 }
