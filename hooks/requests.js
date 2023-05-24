@@ -61,4 +61,22 @@ async function httpGetAllOptions() {
 	}
 }
 
-export { httpGetNewOptionDropdown, httpGetAllOptions, httpPostNewContract };
+async function httpDeleteOption(options_id) {
+	try {
+		return await fetch(`${API_URL}/delete/${options_id}`, {
+			method: "delete",
+		});
+	} catch (error) {
+		console.log(error);
+		return {
+			ok: false,
+		};
+	}
+}
+
+export {
+	httpGetNewOptionDropdown,
+	httpGetAllOptions,
+	httpPostNewContract,
+	httpDeleteOption,
+};
