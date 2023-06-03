@@ -34,7 +34,26 @@ THIS IS ALL THE DATA SENT IN THE POST REQUEST
 
 
 */
-async function httpPostNewContract(data) {
+async function httpPostNewContract(formValues) {
+	const data = {
+		ticker: formValues.ticker.toUpperCase(),
+		contract_type: formValues.contract_type,
+		position_type: formValues.position_type,
+		expiration: formValues.expiration,
+		strike_price: parseFloat(formValues.strike_price),
+		quantity: parseInt(formValues.quantity),
+		open_price: parseFloat(formValues.open_price),
+		date_opened: formValues.date_opened,
+		date_closed: formValues.date_closed === "" ? null : formValues.date_closed,
+		closing_price:
+			formValues.closing_price === ""
+				? null
+				: parseFloat(formValues.closing_price),
+		closed: formValues.closed,
+		fees: parseFloat(formValues.fees),
+	};
+	console.log(data);
+
 	try {
 		return await fetch(`${API_URL}/add`, {
 			method: "post",
@@ -61,6 +80,34 @@ async function httpGetAllOptions() {
 	}
 }
 
+async function httpGetSingleOption(id) {
+	try {
+		const response = await fetch(`${API_URL}/single-contract/${id}`);
+		return response.json();
+	} catch (error) {
+		console.log(error);
+		return {
+			ok: false,
+		};
+	}
+}
+
+// updates existing options contract
+async function httpPutSingleOption(id, data) {
+	try {
+		const response = await fetch(`${API_URL}/single-contract/${id}`, {
+			method: "put",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		});
+	} catch (error) {
+		console.log(error);
+		return {
+			ok: false,
+		};
+	}
+}
+
 async function httpDeleteOption(options_id) {
 	try {
 		return await fetch(`${API_URL}/delete/${options_id}`, {
@@ -79,4 +126,6 @@ export {
 	httpGetAllOptions,
 	httpPostNewContract,
 	httpDeleteOption,
+	httpGetSingleOption,
+	httpPutSingleOption,
 };

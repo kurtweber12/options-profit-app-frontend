@@ -36,6 +36,14 @@ body {
 }
 
 @layer components {
+	.contract-submit-button {
+		@apply py-2 px-8 bg-green-300/30 hover:bg-green-300/50 rounded-full;
+	}
+
+	.contract-home-button {
+		@apply py-2 px-8 bg-blue-300/30 hover:bg-blue-300/50 rounded-full;
+	}
+
 	.table-items {
 		@apply border border-gray-800 p-1;
 	}

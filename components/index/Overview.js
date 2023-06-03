@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { httpGetAllOptions, httpDeleteOption } from "@/hooks/requests";
+import {
+	httpGetAllOptions,
+	httpDeleteOption,
+	httpGetSingleOption,
+} from "@/hooks/requests";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";
+import Graphs from "./Graphs";
+import useFilter from "@/hooks/useFilter";
 
 const Overview = () => {
+	const { filter, handleFilterChange } = useFilter();
+
 	const [httpOptions, setHttpOptions] = useState([]);
 
 	const [deleteRow, setDeleteRow] = useState(null);
@@ -13,18 +21,42 @@ const Overview = () => {
 	const [deleteStatus, setDeleteStatus] = useState("");
 
 	useEffect(() => {
-		const fetchData = async () => {
+		const fetchDataUnfiltered = async () => {
+			console.log(filter);
 			try {
 				const data = await httpGetAllOptions();
 				setHttpOptions(data);
 				console.log(data);
+
+				const singleData = await httpGetSingleOption(20);
+				console.log(singleData);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 
-		fetchData();
-	}, []);
+		const fetchDataFiltered = async () => {
+			try {
+				const data = await httpGetAllOptions();
+				setHttpOptions(data);
+				console.log(data);
+
+				const singleData = await httpGetSingleOption(20);
+				console.log(singleData);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		if (filter.ticker !== "" || filter.year !== "") {
+			fetchDataFiltered();
+			console.log("filtered data loaded");
+			console.log(filter);
+		} else {
+			fetchDataUnfiltered();
+			console.log("unfiltered data loaded");
+		}
+	}, [filter.year, filter.ticker]);
 
 	const handleDelete = async (deleteOption) => {
 		try {
@@ -45,6 +77,7 @@ const Overview = () => {
 	return (
 		<div className="flex flex-col w-full mr-4">
 			<h2 className="text-2xl font-bold">Overview</h2>
+			<Graphs optionsData={httpOptions} />
 			<table className="table-items table-auto">
 				<tbody>
 					<tr>
@@ -105,7 +138,7 @@ const Overview = () => {
 								</td>
 								<td className={`table-items   ${color}`}>
 									<div className="flex justify-center">
-										<Link href="/edit">
+										<Link href={`/edit/${option.id}`}>
 											<PencilSquareIcon className="h-6 w-6" />
 										</Link>
 									</div>
