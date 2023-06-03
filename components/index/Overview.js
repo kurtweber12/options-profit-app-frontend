@@ -3,7 +3,7 @@ import {
 	httpGetAllOptions,
 	httpDeleteOption,
 	httpGetSingleOption,
-} from "@/hooks/requests";
+} from "@/utils/requests";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";

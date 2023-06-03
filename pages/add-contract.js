@@ -1,7 +1,7 @@
 import {
 	httpGetNewOptionDropdown,
 	httpPostNewContract,
-} from "@/hooks/requests";
+} from "@/utils/requests";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -304,7 +304,7 @@ const AddContract = () => {
 									onClick={() => {
 										setShowSuccessModal(false);
 										setAddStatus("");
-										window.location.reload(false);
+										//window.location.reload(false);
 									}}
 								>
 									Close

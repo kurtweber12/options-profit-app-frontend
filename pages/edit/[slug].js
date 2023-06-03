@@ -4,7 +4,7 @@ import {
 	httpGetNewOptionDropdown,
 	httpGetSingleOption,
 	httpPutSingleOption,
-} from "@/hooks/requests";
+} from "@/utils/requests";
 import Link from "next/link";
 
 const Edit = () => {
