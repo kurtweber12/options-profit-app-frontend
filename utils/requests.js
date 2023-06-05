@@ -93,7 +93,24 @@ async function httpGetSingleOption(id) {
 }
 
 // updates existing options contract
-async function httpPutSingleOption(id, data) {
+async function httpPutSingleOption(id, formValues) {
+	const data = {
+		ticker: formValues.ticker.toUpperCase(),
+		contract_type: formValues.contract_type,
+		position_type: formValues.position_type,
+		expiration: formValues.expiration,
+		strike_price: parseFloat(formValues.strike_price),
+		quantity: parseInt(formValues.quantity),
+		open_price: parseFloat(formValues.open_price),
+		date_opened: formValues.date_opened,
+		date_closed: formValues.date_closed === "" ? null : formValues.date_closed,
+		closing_price:
+			formValues.closing_price === ""
+				? null
+				: parseFloat(formValues.closing_price),
+		closed: formValues.closed,
+		fees: parseFloat(formValues.fees),
+	};
 	try {
 		const response = await fetch(`${API_URL}/single-contract/${id}`, {
 			method: "put",
