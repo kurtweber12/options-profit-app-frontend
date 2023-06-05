@@ -5,7 +5,6 @@ import { httpGetNewOptionDropdown } from "@/utils/requests";
 import useForm from "@/hooks/useForm";
 
 const Form = ({ onSubmit, handleInputChange, formValues, setFormValues }) => {
-	// const { handleInputChange, formValues, setFormValues } = useForm();
 	const [httpDropdown, setHttpDropdown] = useState({});
 
 	const handleSubmit = (event) => {

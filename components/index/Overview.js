@@ -31,9 +31,6 @@ const Overview = () => {
 				const data = await httpGetAllOptions();
 				setHttpOptions(data);
 				console.log(data);
-
-				const singleData = await httpGetSingleOption(20);
-				console.log(singleData);
 			} catch (error) {
 				console.log(error);
 			}

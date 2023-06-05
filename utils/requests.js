@@ -100,6 +100,7 @@ async function httpPutSingleOption(id, data) {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(data),
 		});
+		return response;
 	} catch (error) {
 		console.log(error);
 		return {
