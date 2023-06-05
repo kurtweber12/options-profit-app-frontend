@@ -8,12 +8,10 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";
 import Graphs from "./Graphs";
-import useFilter from "@/hooks/useFilter";
 import DeleteModal from "./DeleteModal";
 import useDeleteModal from "@/hooks/useDeleteModal";
 
 const Overview = () => {
-	const { filter, handleFilterChange } = useFilter();
 	const {
 		showModal,
 		setShowModal,
@@ -33,8 +31,7 @@ const Overview = () => {
 	// const [deleteStatus, setDeleteStatus] = useState("");
 
 	useEffect(() => {
-		const fetchDataUnfiltered = async () => {
-			console.log(filter);
+		const fetchData = async () => {
 			try {
 				const data = await httpGetAllOptions();
 				setHttpOptions(data);
@@ -46,29 +43,8 @@ const Overview = () => {
 				console.log(error);
 			}
 		};
-
-		const fetchDataFiltered = async () => {
-			try {
-				const data = await httpGetAllOptions();
-				setHttpOptions(data);
-				console.log(data);
-
-				const singleData = await httpGetSingleOption(20);
-				console.log(singleData);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		if (filter.ticker !== "" || filter.year !== "") {
-			fetchDataFiltered();
-			console.log("filtered data loaded");
-			console.log(filter);
-		} else {
-			fetchDataUnfiltered();
-			console.log("unfiltered data loaded");
-		}
-	}, [filter.year, filter.ticker]);
+		fetchData();
+	}, []);
 
 	const handleDelete = async () => {
 		const deleteOption = deleteRow;
