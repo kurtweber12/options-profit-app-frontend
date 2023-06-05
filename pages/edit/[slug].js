@@ -9,6 +9,9 @@ import Link from "next/link";
 
 const Edit = () => {
 	const router = useRouter();
+	// const { formValues, handleInputChange, setFormValues } = useForm();
+	// const { showSuccessModal, setShowSuccessModal, addStatus, setAddStatus } =
+	// 	useModal();
 
 	const id = router.query.slug;
 
@@ -81,8 +84,23 @@ const Edit = () => {
 		console.log(`Status: ${status}`);
 	};
 
-	const handleSubmit = () => {
-		router.push("/");
+	const handleSubmit = async () => {
+		setLoading(true);
+
+		const response = await httpPostNewContract(formValues);
+		if (response.ok === false) {
+			setLoading(false);
+			console.log("error");
+			setAddStatus("error");
+		} else {
+			setAddStatus("success");
+			console.log("success");
+			console.log(response);
+			setShowSuccessModal(true);
+			setLoading(false);
+		}
+		setLoading(false);
+		setShowSuccessModal(true);
 	};
 
 	return (

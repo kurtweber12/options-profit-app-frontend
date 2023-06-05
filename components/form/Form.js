@@ -48,8 +48,8 @@ const Form = ({ onSubmit, handleInputChange, formValues, setFormValues }) => {
 		};
 
 		fetchDropdown();
-		// console.log(httpDropdown.contract_type[0][1]);
 	}, []);
+
 	return (
 		<form className="flex flex-col w-96 space-y-4" onSubmit={handleSubmit}>
 			<div className="input-field">
@@ -81,7 +81,12 @@ const Form = ({ onSubmit, handleInputChange, formValues, setFormValues }) => {
 			</div>
 			<div className="input-field">
 				<label>Position Type</label>
-				<select className="input-field-text-boxes">
+				<select
+					className="input-field-text-boxes"
+					name="position_type"
+					value={formValues.position_type}
+					onChange={handleInputChange}
+				>
 					{httpDropdown.position_type?.map((type, i) => (
 						<option value={type[0]} key={i}>
 							{type[1]}
