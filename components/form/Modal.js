@@ -1,6 +1,13 @@
 import React from "react";
+import Router, { useRouter } from "next/router";
 
-const Modal = () => {
+const Modal = ({
+	showSuccessModal,
+	setShowSuccessModal,
+	addStatus,
+	setAddStatus,
+}) => {
+	const router = useRouter();
 	return (
 		<div className="fixed inset-0 flex items-center justify-center z-50">
 			<div className="fixed inset-0 bg-black opacity-50 "></div>
