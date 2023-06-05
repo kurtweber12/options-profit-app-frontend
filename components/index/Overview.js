@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-	httpGetAllOptions,
-	httpDeleteOption,
-	httpGetSingleOption,
-} from "@/utils/requests";
+import Link from "next/link";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
-import Link from "next/link";
+import { httpGetAllOptions, httpDeleteOption } from "@/utils/requests";
+
 import Graphs from "./Graphs";
 import DeleteModal from "./DeleteModal";
 import useDeleteModal from "@/hooks/useDeleteModal";

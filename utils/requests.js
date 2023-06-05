@@ -80,6 +80,7 @@ async function httpGetAllOptions() {
 	}
 }
 
+// gets the information for the edit page
 async function httpGetSingleOption(id) {
 	try {
 		const response = await fetch(`${API_URL}/single-contract/${id}`);

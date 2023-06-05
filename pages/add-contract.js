@@ -23,9 +23,7 @@ const AddContract = () => {
 		setModalMessage,
 	} = useModal();
 
-	// const [showSuccessModal, setShowSuccessModal] = useState(false);
 	const [loading, setLoading] = useState(false);
-	//const [addStatus, setAddStatus] = useState("");
 
 	const handleSubmit = async (event) => {
 		//event.preventDefault();
@@ -44,8 +42,6 @@ const AddContract = () => {
 		}
 		setLoading(false);
 		setShowSuccessModal(true);
-
-		//router.push("/");
 	};
 
 	return (

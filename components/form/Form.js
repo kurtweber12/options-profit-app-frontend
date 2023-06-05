@@ -1,8 +1,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { BarLoader } from "react-spinners";
+
 import { httpGetNewOptionDropdown } from "@/utils/requests";
-import useForm from "@/hooks/useForm";
 
 const Form = ({ onSubmit, handleInputChange, formValues, setFormValues }) => {
 	const [httpDropdown, setHttpDropdown] = useState({});
